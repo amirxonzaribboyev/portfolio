@@ -279,12 +279,6 @@
                 cursor:pointer;
                 color:white;
 }
-         #nav-menu{
-        opacity:0;
-        visibility:hidden;
-        transform:translateY(-10px);
-        transition:0.3s ease;
-        }
 
 #nav-menu.active{
     opacity:1;
@@ -305,11 +299,6 @@
         font-size:2.5rem;
         line-height:1.1;
     }
-
-    .hero-content h2{
-        font-size:1.5rem;
-    }
-
     .hero-content p{
         font-size:1rem;
         padding:0 10px;
@@ -333,6 +322,7 @@
         background:#0f172a;
         padding:20px 0;
         text-align:center;
+        box-shadow:0 10px 20px rgba(0,0,0,.3);
     }
 
     #nav-menu.active{
@@ -365,7 +355,6 @@
                 padding: 30px;
                 background: #111827;
             }
-        }
     </style>
 </head>
 
@@ -577,24 +566,7 @@
     </footer>
 
     <script>
-
-        function openModal(src) {
-            document.getElementById("imageModal").style.display = "block";
-            document.getElementById("modalImg").src = src;
-        }
-
-        function closeModal() {
-            document.getElementById("imageModal").style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            const modal = document.getElementById("imageModal");
-
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-      function toggleMenu(){
+function toggleMenu(){
 
     const menu = document.getElementById("nav-menu");
     const button = document.querySelector(".menu-toggle");
@@ -607,65 +579,8 @@
         button.innerHTML = "☰";
     }
 }
-document.addEventListener("click", function(event){
 
-    const menu = document.getElementById("nav-menu");
-    const toggle = document.querySelector(".menu-toggle");
-
-    if(
-        !menu.contains(event.target) &&
-        !toggle.contains(event.target)
-    ){
-        menu.classList.remove("active");
-
-        toggle.innerHTML = "☰";
-    }
-
-});
-        
 const navLinks = document.querySelectorAll("#nav-menu a");
-
-navLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        document.getElementById("nav-menu")
-        .classList.remove("active");
-    });
-});
-        document.addEventListener("click", function(event){
-
-    const menu = document.getElementById("nav-menu");
-    const toggle = document.querySelector(".menu-toggle");
-
-    if(
-        !menu.contains(event.target) &&
-        !toggle.contains(event.target)
-    ){
-        menu.classList.remove("active");
-    }
-
-});
-        document.addEventListener("keydown", function(event){
-
-    if(event.key === "Escape"){
-        document.getElementById("nav-menu")
-        .classList.remove("active");
-    }
-
-});
-        function toggleMenu(){
-
-    const menu = document.getElementById("nav-menu");
-    const button = document.querySelector(".menu-toggle");
-
-    menu.classList.toggle("active");
-
-    if(menu.classList.contains("active")){
-        button.innerHTML = "✕";
-    }else{
-        button.innerHTML = "☰";
-    }
-}
-        const navLinks = document.querySelectorAll("#nav-menu a");
 
 navLinks.forEach(link => {
     link.addEventListener("click", () => {
@@ -677,6 +592,34 @@ navLinks.forEach(link => {
         .innerHTML = "☰";
 
     });
+});
+
+document.addEventListener("click", function(event){
+
+    const menu = document.getElementById("nav-menu");
+    const toggle = document.querySelector(".menu-toggle");
+
+    if(
+        !menu.contains(event.target) &&
+        !toggle.contains(event.target)
+    ){
+        menu.classList.remove("active");
+        toggle.innerHTML = "☰";
+    }
+
+});
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        document.getElementById("nav-menu")
+        .classList.remove("active");
+
+        document.querySelector(".menu-toggle")
+        .innerHTML = "☰";
+    }
+
 });
         
     </script>
