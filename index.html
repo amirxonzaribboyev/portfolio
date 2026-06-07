@@ -594,11 +594,35 @@
                 modal.style.display = "none";
             }
         }
-        function toggleMenu(){
-    document.getElementById("nav-menu")
-    .classList.toggle("active");
-}
+      function toggleMenu(){
 
+    const menu = document.getElementById("nav-menu");
+    const button = document.querySelector(".menu-toggle");
+
+    menu.classList.toggle("active");
+
+    if(menu.classList.contains("active")){
+        button.innerHTML = "✕";
+    }else{
+        button.innerHTML = "☰";
+    }
+}
+document.addEventListener("click", function(event){
+
+    const menu = document.getElementById("nav-menu");
+    const toggle = document.querySelector(".menu-toggle");
+
+    if(
+        !menu.contains(event.target) &&
+        !toggle.contains(event.target)
+    ){
+        menu.classList.remove("active");
+
+        toggle.innerHTML = "☰";
+    }
+
+});
+        
 const navLinks = document.querySelectorAll("#nav-menu a");
 
 navLinks.forEach(link => {
@@ -641,6 +665,19 @@ navLinks.forEach(link => {
         button.innerHTML = "☰";
     }
 }
+        const navLinks = document.querySelectorAll("#nav-menu a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+
+        document.getElementById("nav-menu")
+        .classList.remove("active");
+
+        document.querySelector(".menu-toggle")
+        .innerHTML = "☰";
+
+    });
+});
         
     </script>
 
