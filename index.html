@@ -1,4 +1,4 @@
-```html
+    ```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -272,27 +272,21 @@
             .cv-btn:hover {
                 transform: translateY(-3px);
             }
-
+        
+            .menu-toggle{
+                display:none;
+                font-size:28px;
+                cursor:pointer;
+                color:white;
+}
+        
         /* Responsive */
-        @media(max-width:768px) {
-            .cert-row {
-                flex-direction: column;
-                align-items: center;
-            }
+       @media (max-width:768px){
 
-            .cert-card {
-                width: 90%;
-                max-width: 350px;
-            }
-
-            @media(max-width:768px) {
-                nav ul {
-                    display: flex;
-                    gap: 10px;
-                    font-size: 14px;
-                }
-            }
-            @media (max-width:768px){
+    .hero{
+        min-height:90vh;
+        padding-top:120px;
+    }
 
     .hero-content h1{
         font-size:2.5rem;
@@ -307,38 +301,51 @@
         font-size:1rem;
         padding:0 10px;
     }
-    @media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+    }
 
     .nav-container{
+        justify-content:space-between;
+    }
+
+    #nav-menu{
+        display:none;
         flex-direction:column;
-        gap:10px;
+        position:absolute;
+        top:75px;
+        left:0;
+        width:100%;
+        background:#0f172a;
+        padding:20px 0;
+        text-align:center;
     }
 
-    nav ul{
+    #nav-menu.active{
         display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:12px;
     }
 
-    nav ul li a{
-        font-size:14px;
+    nav ul li{
+        margin:10px 0;
     }
-}
-@media (max-width:768px){
 
-    .hero{
-        min-height:85vh;
-        padding-top:120px;
+    .cert-row{
+        flex-direction:column;
+        align-items:center;
     }
-}
-@media (max-width:768px){
+
+    .cert-card{
+        width:90%;
+        max-width:350px;
+    }
 
     .cv-btn{
         width:80%;
         max-width:280px;
         text-align:center;
     }
+}
 }
 
                 
@@ -355,18 +362,24 @@
 <body>
 
     <nav>
-        <div class="nav-container">
-            <div class="logo">Portfolio</div>
+    <div class="nav-container">
 
-            <ul>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#certificates">Certificates</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+        <div class="logo">Portfolio</div>
 
+        <div class="menu-toggle" onclick="toggleMenu()">
+            ☰
         </div>
-    </nav>
+
+        <ul id="nav-menu">
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+    </div>
+</nav>
 
     <!-- HERO -->
 
@@ -572,7 +585,11 @@
                 modal.style.display = "none";
             }
         }
-
+        function toggleMenu(){
+        document.getElementById("nav-menu")
+        .classList.toggle("active");
+}
+        
     </script>
 
 </body>
