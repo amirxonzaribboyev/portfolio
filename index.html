@@ -279,6 +279,19 @@
                 cursor:pointer;
                 color:white;
 }
+         #nav-menu{
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-10px);
+        transition:0.3s ease;
+        }
+
+#nav-menu.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}  
+        
         
         /* Responsive */
        @media (max-width:768px){
@@ -345,11 +358,8 @@
         max-width:280px;
         text-align:center;
     }
-}
-}
-
-                
-}
+       
+}              
             footer {
                 text-align: center;
                 padding: 30px;
@@ -585,8 +595,51 @@
             }
         }
         function toggleMenu(){
+    document.getElementById("nav-menu")
+    .classList.toggle("active");
+}
+
+const navLinks = document.querySelectorAll("#nav-menu a");
+
+navLinks.forEach(link => {
+    link.addEventListener("click", () => {
         document.getElementById("nav-menu")
-        .classList.toggle("active");
+        .classList.remove("active");
+    });
+});
+        document.addEventListener("click", function(event){
+
+    const menu = document.getElementById("nav-menu");
+    const toggle = document.querySelector(".menu-toggle");
+
+    if(
+        !menu.contains(event.target) &&
+        !toggle.contains(event.target)
+    ){
+        menu.classList.remove("active");
+    }
+
+});
+        document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+        document.getElementById("nav-menu")
+        .classList.remove("active");
+    }
+
+});
+        function toggleMenu(){
+
+    const menu = document.getElementById("nav-menu");
+    const button = document.querySelector(".menu-toggle");
+
+    menu.classList.toggle("active");
+
+    if(menu.classList.contains("active")){
+        button.innerHTML = "✕";
+    }else{
+        button.innerHTML = "☰";
+    }
 }
         
     </script>
