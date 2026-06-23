@@ -397,8 +397,8 @@
                 Download CV
             </a>
             <div class="social-links">
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
+                <a href="https://linkedin.com/in/amirxon-zaribboyev-aa3bab37b"  target="_blank" >LinkedIn</a>
+                <a href="https://github.com/amirxonzaribboyev"  target="_blank" >GitHub</a>
                 <a href="https://t.me/amirxonzaribboyev" target="_blank">Telegram</a>
             </div>
 
@@ -522,29 +522,29 @@
     </section>
 
     <!-- CONTACT -->
+<section id="contact">
 
-    <section id="contact">
+    <h2 class="section-title">Contact</h2>
 
-        <h2 class="section-title">Contact</h2>
+    <div class="contact-form">
 
-        <div class="contact-form">
+        <input type="text" id="name" placeholder="Your Name">
 
-            <input type="text" placeholder="Your Name">
+        <input type="email" id="email" placeholder="Your Email">
 
-            <input type="email" placeholder="Your Email">
+        <textarea rows="6" id="message" placeholder="Your Message"></textarea>
 
-            <textarea rows="6" placeholder="Your Message"></textarea>
+        <button type="button" onclick="sendMessage()">
+            Send Message
+        </button>
 
-            <button>Send Message</button>
+        <p style="margin-top:20px;text-align:center;">
+            Email: amirxonzaribboyev@gmail.com
+        </p>
 
-            <p style="margin-top:20px;text-align:center;">
-                Email:
-                amirxonzaribboyev@gmail.com
-            </p>
+    </div>
 
-        </div>
-
-    </section>
+</section>
 
     <!-- MODAL -->
 
@@ -623,6 +623,64 @@ document.addEventListener("keydown", function(event){
 });
         
     </script>
+
+    <!!send message uchun script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-analytics.js";
+  import { getFirestore, collection, addDoc }
+  from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+  // Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyAea7ax7fvHex_zWKINrH29PPNKJ-l7X-g",
+    authDomain: "amirxon-portfolio.firebaseapp.com",
+    projectId: "amirxon-portfolio",
+    storageBucket: "amirxon-portfolio.firebasestorage.app",
+    messagingSenderId: "516248006707",
+    appId: "1:516248006707:web:0c56188ee78944ffb17346",
+    measurementId: "G-9C0K87BLND"
+  };
+
+  // Init Firebase
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+
+  const db = getFirestore(app);
+
+  // Contact form function
+  window.sendMessage = async function () {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+
+    // validation
+    if (!name || !email || !message) {
+      alert("Iltimos, barcha maydonlarni to‘ldiring ❗");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "contacts"), {
+        name: name,
+        email: email,
+        message: message,
+        time: new Date()
+      });
+
+      alert("Xabar yuborildi ✅");
+
+      // formni tozalash
+      document.getElementById("name").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("message").value = "";
+
+    } catch (error) {
+      console.error("Firebase error:", error);
+      alert("Xatolik yuz berdi ❌");
+    }
+  };
+</script>
 
 </body>
 
