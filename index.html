@@ -120,14 +120,43 @@
             color: #38bdf8;
         }
 
-        /* Education */
-
+       /* Education */
         .education-card {
             background: #1e293b;
             padding: 25px;
             border-radius: 15px;
             margin-bottom: 20px;
-            text-align: center;
+
+            /* Elementlarni chapdan o'ngga tartiblash va tekislash */
+            display: flex;
+            align-items: center;
+            text-align: left;
+            gap: 25px;
+        }
+
+        .education-logo {
+            width: 80px;
+            /* Logotipni biroz kichraytirdik */
+            height: 80px;
+            object-fit: contain;
+            flex-shrink: 0;
+
+            /* OQ FONNI YO'QOTISH: To'q fonda oq fonni transparent (shaffof) qiladi */
+            mix-blend-mode:multiply;
+        }
+
+        .education-content h3 {
+            margin-bottom: 5px;
+            color: #f8fafc;
+        }
+
+        .education-content p {
+            line-height: 1.7;
+            color: #cbd5e1;
+        }
+
+        .education-content strong {
+            color: #38bdf8;
         }
 
         /* Certificates */
@@ -287,6 +316,20 @@
         
         
         /* Responsive */
+         @media (max-width: 600px) {
+
+            .education-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .education-logo {
+                width: 90px;
+                height: 90px;
+            }
+
+        }
        @media (max-width:768px){
 
     .hero{
@@ -407,27 +450,44 @@
 
     <!-- EDUCATION -->
 
-    <section id="education">
+   <section id="education">
 
         <h2 class="section-title">Education</h2>
 
+        <!-- 1. UWED Card -->
         <div class="education-card">
-            <h3>"Yangiarik Education Center" private school</h3>
-            <p>
-                2026 - Present
-
-                High School Student
-
-                Relevant Courses: Computer Science, Mathematics,
-                English Language.
-            </p>
+            <img src="images/uwed-logo.png" alt="UWED Logo" class="education-logo">
+            <div class="education-content">
+                <h3>University of World Economy and Diplomacy (UWED)</h3>
+                <p>
+                    2026 - Present<br>
+                    Undergraduate Student<br>
+                    <strong>Faculty:</strong> International Economics
+                </p>
+            </div>
         </div>
 
+        <!-- 2. Private School Card -->
         <div class="education-card">
-            <h3>Additional Training</h3>
-            <p>
-                Improving IELTS, SAT, Programming Courses.
-            </p>
+            <img src="images/yaedu-logo.png" alt="Yangiarik Education Centre Logo" class="education-logo">
+            <div class="education-content">
+                <h3>"Yangiarik Education Centre" private school</h3>
+                <p>
+                    2026 - Present<br>
+                    High School Student<br>
+                    <strong>Relevant Courses:</strong> Computer Science, Mathematics, English Language.
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. Additional Training Card -->
+        <div class="education-card">
+            <div class="education-content">
+                <h3>Additional Training</h3>
+                <p>
+                    IELTS Preparation, SAT, Programming Courses.
+                </p>
+            </div>
         </div>
 
     </section>
